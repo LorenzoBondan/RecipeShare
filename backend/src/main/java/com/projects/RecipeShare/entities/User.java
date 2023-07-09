@@ -113,6 +113,14 @@ public class User implements UserDetails, Serializable{
 		return feedbacks;
 	}
 
+	public List<Recipe> getRecipes() {
+		return recipes;
+	}
+
+	public Set<Recipe> getFavorites() {
+		return favorites;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

@@ -132,6 +132,18 @@ private static final long serialVersionUID = 1L;
 		this.author = author;
 	}
 
+	public List<Feedback> getFeedbacks() {
+		return feedbacks;
+	}
+
+	public Set<Category> getCategories() {
+		return categories;
+	}
+
+	public Set<User> getUsersFavorited() {
+		return usersFavorited;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

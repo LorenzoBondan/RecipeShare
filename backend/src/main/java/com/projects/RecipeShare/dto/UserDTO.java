@@ -15,17 +15,19 @@ public class UserDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
-	
 	@NotBlank(message = "Campo obrigatório")
 	private String name;
-	
 	@Email(message = "Favor entrar com um email válido")
 	private String email;
-
 	private String imgUrl;
 	
 	private List<RoleDTO> roles = new ArrayList<>();
 	
+	private List<Long> feedbacksId = new ArrayList<>();
+	
+	private List<RecipeDTO> recipes = new ArrayList<>();
+	
+	private List<RecipeDTO> favorites = new ArrayList<>();
 	  
 	public UserDTO() {}
 
@@ -44,7 +46,9 @@ public class UserDTO implements Serializable {
 		this.imgUrl = entity.getImgUrl();
 		
 		entity.getRoles().forEach(rol -> this.roles.add(new RoleDTO(rol)));
-
+		entity.getFeedbacks().forEach(feed -> this.feedbacksId.add(feed.getId()));
+		entity.getRecipes().forEach(rec -> this.recipes.add(new RecipeDTO(rec)));
+		entity.getFavorites().forEach(rec -> this.favorites.add(new RecipeDTO(rec)));
 	}
 
 	public Long getId() {
@@ -81,6 +85,18 @@ public class UserDTO implements Serializable {
 
 	public List<RoleDTO> getRoles() { 
 		return roles;
+	}
+
+	public List<Long> getFeedbacksId() {
+		return feedbacksId;
+	}
+
+	public List<RecipeDTO> getRecipes() {
+		return recipes;
+	}
+
+	public List<RecipeDTO> getFavorites() {
+		return favorites;
 	}
 
 	@Override
