@@ -17,12 +17,17 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.projects.RecipeShare.dto.RecipeDTO;
 import com.projects.RecipeShare.dto.RoleDTO;
 import com.projects.RecipeShare.dto.UserDTO;
 import com.projects.RecipeShare.dto.UserInsertDTO;
 import com.projects.RecipeShare.dto.UserUpdateDTO;
+import com.projects.RecipeShare.entities.Feedback;
+import com.projects.RecipeShare.entities.Recipe;
 import com.projects.RecipeShare.entities.Role;
 import com.projects.RecipeShare.entities.User;
+import com.projects.RecipeShare.repositories.FeedbackRepository;
+import com.projects.RecipeShare.repositories.RecipeRepository;
 import com.projects.RecipeShare.repositories.RoleRepository;
 import com.projects.RecipeShare.repositories.UserRepository;
 import com.projects.RecipeShare.services.exceptions.DataBaseException;
@@ -41,6 +46,12 @@ public class UserService implements UserDetailsService {
 
 	@Autowired
 	private RoleRepository roleRepository;
+	
+	@Autowired
+	private RecipeRepository recipeRepository;
+	
+	@Autowired
+	private FeedbackRepository feedbackRepository;
 	
 	@Transactional(readOnly = true)
 	public Page<UserDTO> findAllPaged(String name, Pageable pageable) {
@@ -106,6 +117,21 @@ public class UserService implements UserDetailsService {
 		for (RoleDTO rolDto : dto.getRoles()) {
 			Role role = roleRepository.getOne(rolDto.getId());
 			entity.getRoles().add(role);
+		}
+		
+		for (RecipeDTO recipeDto : dto.getRecipes()) {
+			Recipe recipe = recipeRepository.getOne(recipeDto.getId());
+			entity.getRecipes().add(recipe);
+		}
+		
+		for (Long favoriteId : dto.getFavoritesId()) {
+			Recipe recipe = recipeRepository.getOne(favoriteId);
+			entity.getFavorites().add(recipe);
+		}
+		
+		for (Long feedbackId : dto.getFeedbacksId()) {
+			Feedback feedback = feedbackRepository.getOne(feedbackId);
+			entity.getFeedbacks().add(feedback);
 		}
 
 	}

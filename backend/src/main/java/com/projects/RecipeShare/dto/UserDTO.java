@@ -27,7 +27,7 @@ public class UserDTO implements Serializable {
 	
 	private List<RecipeDTO> recipes = new ArrayList<>();
 	
-	private List<RecipeDTO> favorites = new ArrayList<>();
+	private List<Long> favoritesId = new ArrayList<>();
 	  
 	public UserDTO() {}
 
@@ -48,7 +48,7 @@ public class UserDTO implements Serializable {
 		entity.getRoles().forEach(rol -> this.roles.add(new RoleDTO(rol)));
 		entity.getFeedbacks().forEach(feed -> this.feedbacksId.add(feed.getId()));
 		entity.getRecipes().forEach(rec -> this.recipes.add(new RecipeDTO(rec)));
-		entity.getFavorites().forEach(rec -> this.favorites.add(new RecipeDTO(rec)));
+		entity.getFavorites().forEach(rec -> this.favoritesId.add(rec.getId()));
 	}
 
 	public Long getId() {
@@ -95,8 +95,8 @@ public class UserDTO implements Serializable {
 		return recipes;
 	}
 
-	public List<RecipeDTO> getFavorites() {
-		return favorites;
+	public List<Long> getFavoritesId() {
+		return favoritesId;
 	}
 
 	@Override
