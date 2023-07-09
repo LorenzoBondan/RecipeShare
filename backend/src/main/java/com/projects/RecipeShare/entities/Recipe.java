@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -32,6 +33,7 @@ private static final long serialVersionUID = 1L;
 	private String ingredients;
 	private String preparation;
 	private Integer time;
+	@Column(columnDefinition = "TEXT")
 	private String imgUrl;
 	
 	@ManyToOne

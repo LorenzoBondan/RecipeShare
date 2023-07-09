@@ -37,4 +37,21 @@ INSERT INTO tb_user_role (user_id, role_id) VALUES (15, 1);
 INSERT INTO tb_user_role (user_id, role_id) VALUES (16, 1);
 INSERT INTO tb_user_role (user_id, role_id) VALUES (16, 2);
 
+INSERT INTO tb_category (name) VALUES ('Lunch');
+INSERT INTO tb_category (name) VALUES ('Dinner');
+INSERT INTO tb_category (name) VALUES ('Breakfast');
+INSERT INTO tb_category (name) VALUES ('Fast Food');
+INSERT INTO tb_category (name) VALUES ('Healthy Food');
+INSERT INTO tb_category (name) VALUES ('Low Carb');
+
+INSERT INTO tb_recipe (name, ingredients, preparation, time, img_Url, author_id) VALUES ('Hamburger', 'Bread, oil', 'Cut the bread', 45, 'https://www.estadao.com.br/resizer/YNqjimCryDR09ryOpKIAZbPFCv4=/500x600/filters:format(jpg):quality(80):focal(-5x-5:5x5)/cloudfront-us-east-1.images.arcpublishing.com/estadao/GUOGMQ4FRJIUPAWMYLE4WNA3SY.jpg', 1);
+
+INSERT INTO tb_recipe_favorited (recipe_id, user_id) VALUES (1, 2);
+INSERT INTO tb_recipe_favorited (recipe_id, user_id) VALUES (1, 3);
+
+INSERT INTO tb_feedback (comment, pontuation, moment, recipe_id, user_id) VALUES ('Very good', 5, TIMESTAMP WITH TIME ZONE '2023-07-09T13:00:00', 1, 2);
+INSERT INTO tb_feedback (comment, pontuation, moment, recipe_id, user_id) VALUES ('It''s not it all', 3, TIMESTAMP WITH TIME ZONE '2023-07-09T15:20:21', 1, 3);
+
+INSERT INTO tb_recipe_category (recipe_id, category_id) VALUES (1, 4);
+INSERT INTO tb_recipe_category (recipe_id, category_id) VALUES (1, 1);
 
