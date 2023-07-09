@@ -1,5 +1,7 @@
 package com.projects.RecipeShare.services;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
@@ -45,9 +47,12 @@ public class RecipeService{
 	private AuthService authService;
 	
 	@Transactional(readOnly = true)
-	public Page<RecipeDTO> findAllPaged(String name, Pageable pageable) {
-		Page<RecipeDTO> list = repository.find(name, pageable);
-		return list;
+	public Page<RecipeDTO> findAllPaged(Long categoryId, String name, Pageable pageable) {
+		List<Category> categories = (categoryId == 0) ? null :
+	 		Arrays.asList(categoryRepository.getOne(categoryId));
+		Page<Recipe> list = repository.find(categories, name, pageable);
+		repository.findRecipesWithCategories(list.getContent());
+		return list.map(x -> new RecipeDTO(x));
 	}
 
 	@Transactional(readOnly = true)
