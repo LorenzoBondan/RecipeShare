@@ -1,11 +1,12 @@
 import logo from 'assets/images/recipe-logo.png'
 import './styles.css';
-import { Link } from 'react-router-dom';
 import background from 'assets/images/home-background.png';
+import TopNavbar from 'pages/Home/TopNavbar';
 
 const Home = () => {
     return(
         <div className='home-page'>
+            <TopNavbar/>
             <div className="home-container" style={{backgroundImage: `url(${background})`,
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
