@@ -7,6 +7,7 @@ import { useCallback, useEffect, useState } from "react";
 import { requestBackend } from "util/requests";
 import { AxiosRequestConfig } from "axios";
 import { getTokenData } from "util/auth";
+import { Link } from "react-router-dom";
 
 type Props = {
     recipe: Recipe;
@@ -86,9 +87,11 @@ const RecipeCard = ({recipe, onUpdateFavorite} : Props) => {
         }}>
             <div className="recipe-card-content">
                 <div className="recipe-card-first-container">
-                    <div className="recipe-card-title">
-                        <h4>{recipe.name}</h4>
-                    </div>
+                    <Link to={`/recipes/${recipe.id}`}>
+                        <div className="recipe-card-title">
+                            <h4>{recipe.name}</h4>
+                        </div>
+                    </Link>
                     <div className="recipe-card-buttons">
                         {user && recipe.usersFavoritedId.includes(user?.id) ? (
                             <img src={likeFilled} alt="" onClick={() => removeRecipeAsFavorite()}/>

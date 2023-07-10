@@ -59,12 +59,13 @@ const Recipes = () => {
                 </div>
                 <div className='popular-recipes-title'>
                     <h3>The most popular recipes</h3>
+                    <p>{recipes?.numberOfElements} recipes registered</p>
                 </div>
                 <div className='row recipes-row'>
                     {recipes?.content
                         .sort( (a,b) => a.pontuationAverage < b.pontuationAverage ? 1 : -1)
                         .map((recipe) => (
-                            <div className="col-sm-12 col-md-12 col-lg-6 col-xl-6 recipes-column">
+                            <div className="col-sm-12 col-md-12 col-lg-6 col-xl-3 recipes-column">
                                 <RecipeCard recipe={recipe} onUpdateFavorite={() => getRecipes()} key={recipe.id}/>
                             </div>      
                         ))

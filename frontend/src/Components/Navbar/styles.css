@@ -100,12 +100,12 @@
 }
 
 .admin-nav-item.active {
-    background: #8E5E26;
+    background: #D68E39;
     color: #fff !important;
 }
 
 .admin-nav-item-expanded.active{
-    background: #8E5E26;
+    background: #D68E39;
 }
 
 .admin-nav-item svg, .admin-nav-item-expanded svg, .login-nav-item svg, .login-nav-item-expanded svg{
