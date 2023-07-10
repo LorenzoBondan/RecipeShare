@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.Range;
+
 @Entity
 @Table(name = "tb_feedback")
 public class Feedback implements Serializable{
@@ -23,6 +25,7 @@ private static final long serialVersionUID = 1L;
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String comment;
+	@Range(min = 0, max = 5)
 	private Integer pontuation;
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant moment;
