@@ -46,16 +46,16 @@ INSERT INTO tb_category (name) VALUES ('Low Carb');
 INSERT INTO tb_category (name) VALUES ('Deserts');
 
 INSERT INTO tb_recipe (name, ingredients, preparation, time, img_Url, author_id) 
-VALUES ('Pizza', 'Dough, cheese, tomato sauce, toppings', 'Prepare the dough, add toppings, bake', 30, 'https://www.example.com/cookies.jpg', 2);
+VALUES ('Pizza', 'Dough, cheese, tomato sauce, toppings', 'Prepare the dough, add toppings, bake', 30, 'https://images.rawpixel.com/image_png_1000/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTAxL3N2MTk0MTU5LWltYWdlLWpvYjE1NDMucG5n.png', 2);
 
 INSERT INTO tb_recipe (name, ingredients, preparation, time, img_Url, author_id) 
-VALUES ('Spaghetti Carbonara', 'Pasta, eggs, bacon, cheese, black pepper', 'Cook pasta, fry bacon, mix eggs and cheese, combine all ingredients', 20, 'https://www.example.com/spaghetti.jpg', 3);
+VALUES ('Spaghetti Carbonara', 'Pasta, eggs, bacon, cheese, black pepper', 'Cook pasta, fry bacon, mix eggs and cheese, combine all ingredients', 20, 'https://images.rawpixel.com/image_png_1000/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvaXMxNjA1Ni1pbWFnZS1qb2I2MTlfMy1renc1YnJtcC5wbmc.png', 3);
 
 INSERT INTO tb_recipe (name, ingredients, preparation, time, img_Url, author_id) 
-VALUES ('Chicken Stir-Fry', 'Chicken, vegetables, soy sauce, garlic, ginger', 'Cook chicken, sauté vegetables, add sauce and spices', 25, 'https://www.example.com/cookies.jpg', 1);
+VALUES ('Chicken Stir-Fry', 'Chicken, vegetables, soy sauce, garlic, ginger', 'Cook chicken, sauté vegetables, add sauce and spices', 25, 'https://images.rawpixel.com/image_png_1000/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTEwL3B4OTAxMDgxLWltYWdlLWpvYjExNzAucG5n.png', 1);
 
 INSERT INTO tb_recipe (name, ingredients, preparation, time, img_Url, author_id) 
-VALUES ('Chocolate Chip Cookies', 'Flour, butter, sugar, chocolate chips', 'Mix ingredients, shape dough into cookies, bake', 15, 'https://www.example.com/cookies.jpg', 10);
+VALUES ('Chocolate Chip Cookies', 'Flour, butter, sugar, chocolate chips', 'Mix ingredients, shape dough into cookies, bake', 15, 'https://images.rawpixel.com/image_png_1000/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA1L3B4NjQ0NjkyLWltYWdlLWpvYjg1MC5wbmc.png', 10);
 
 INSERT INTO tb_recipe_favorited (recipe_id, user_id) VALUES (1, 2);
 INSERT INTO tb_recipe_favorited (recipe_id, user_id) VALUES (2, 3);
