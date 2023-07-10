@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.projects.RecipeShare.dto.FeedbackDTO;
 import com.projects.RecipeShare.entities.Feedback;
+import com.projects.RecipeShare.entities.User;
 import com.projects.RecipeShare.repositories.FeedbackRepository;
 import com.projects.RecipeShare.repositories.RecipeRepository;
 import com.projects.RecipeShare.repositories.UserRepository;
@@ -30,6 +31,9 @@ public class FeedbackService{
 	@Autowired
 	private UserRepository userRepository;
 	
+	@Autowired
+	private AuthService authService;
+	
 	@Transactional(readOnly = true)
 	public Page<FeedbackDTO> findAllPaged(Pageable pageable) {
 		Page<Feedback> list = repository.findAll(pageable);
@@ -46,9 +50,23 @@ public class FeedbackService{
 	@Transactional
 	public FeedbackDTO insert(FeedbackDTO dto) {
 		Feedback entity = new Feedback();
-		copyDtoToEntity(dto, entity);
-		entity = repository.save(entity);
-		return new FeedbackDTO(entity);
+		User user = authService.authenticated();
+		
+		// an user just can make one feedback for each recipe
+		boolean found = false;
+		for(Feedback feedback : user.getFeedbacks()) {
+			if(feedback.getRecipe().getId() == dto.getRecipeId()) {
+				found = true;
+			}
+		}
+		if(!found) {
+			copyDtoToEntity(dto, entity);
+			entity = repository.save(entity);
+			return new FeedbackDTO(entity);
+		}
+		else {
+			throw new DataBaseException("The user have already done a feedback about this recipe");
+		}
 	}
 	
 	public void delete(Long id) {
