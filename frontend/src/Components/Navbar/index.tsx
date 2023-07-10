@@ -6,7 +6,7 @@ import { removeAuthData } from 'util/storage';
 import history from 'util/history';
 
 import logo from 'assets/images/recipe-logo.png'
-import home from 'assets/images/home.png';
+import noodle from 'assets/images/noodle.png';
 import plusIcon from 'assets/images/plus.png';
 import profileIcon from 'assets/images/profile.png';
 import adminIcon from 'assets/images/admin.png';
@@ -66,9 +66,9 @@ const Navbar = () => {
                 {isAuthenticated() ? (
                 <>
                 <li>
-                    <NavLink to="/home" className={isExpanded ? "admin-nav-item" : "admin-nav-item-expanded"} >
-                        <img src={home} alt="" />
-                        { isExpanded && <p>Home</p>}
+                    <NavLink to="/recipes" className={isExpanded ? "admin-nav-item" : "admin-nav-item-expanded"} >
+                        <img src={noodle} alt="" />
+                        { isExpanded && <p>Recipes</p>}
                     </NavLink>
                 </li>
                 <li>

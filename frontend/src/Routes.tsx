@@ -4,6 +4,7 @@ import Navbar from "Components/Navbar";
 import Admin from "pages/Admin";
 import Auth from "pages/Auth";
 import Home from "pages/Home";
+import Recipes from "pages/Recipes";
 import { Redirect, Route, Router, Switch } from "react-router-dom";
 import { isAuthenticated } from "util/auth";
 import history from "util/history";
@@ -24,6 +25,10 @@ const Routes = () => {
                     
                     <Route path="/home" exact>
                         <Home/>
+                    </Route>
+
+                    <Route path="/recipes" exact>
+                        <Recipes/>
                     </Route>
 
                     <Redirect from='/auth' to='/auth/login' exact />
