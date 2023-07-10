@@ -65,8 +65,8 @@ const Recipes = () => {
                         .sort( (a,b) => a.pontuationAverage < b.pontuationAverage ? 1 : -1)
                         .map((recipe) => (
                             <div className="col-sm-12 col-md-12 col-lg-6 col-xl-6 recipes-column">
-                                <RecipeCard recipe={recipe} key={recipe.id}/>
-                            </div>
+                                <RecipeCard recipe={recipe} onUpdateFavorite={() => getRecipes()} key={recipe.id}/>
+                            </div>      
                         ))
                     }
                 </div>

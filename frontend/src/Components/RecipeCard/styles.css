@@ -39,6 +39,21 @@
     justify-content: center;
 }
 
+.recipe-card-buttons img{
+    height: 30px;
+}
+
+.recipe-card-buttons img:hover{
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.recipe-card-buttons p{
+    margin-bottom: 0;
+    font-weight: 700;
+    color: #fff;
+}
+
 .recipe-card-second-container{
     width: 100%;
     display: flex;
