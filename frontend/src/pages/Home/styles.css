@@ -83,6 +83,12 @@
     text-shadow: 1px 1px 1px black !important;
     border: 1px solid #fff !important;
     margin-bottom: 10px;
+    font-family: 'Posterama Bold' !important;
+    background-color: rgba(142, 94, 38, 0.75) !important;
+}
+
+.btn-home:hover{
+    transform: scale(1.02);
 }
 
 @media(min-width:576px){
