@@ -1,18 +1,18 @@
 .home-page{
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     width: 100%;
     height: 100vh;
-    margin-top: 100px;
 }
 
 .home-container{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
-    padding: 5px;
+    justify-content: center;
+    width: 100%;
+    height: auto;
 }
 
 .home-first-container{
@@ -30,18 +30,28 @@
 
 .home-first-container h1{
     font-size: 28px;
-    font-weight: bold;
-    color: #7D5889;
-    margin-bottom: 30px;
+    font-weight: 700;
+    color: #FBE6CE;
     text-align: center;
+    font-family: 'Posterama Bold';
+    margin-bottom: 30px;
+    text-shadow: 2px 3px 2px black;
 }
 
 .home-first-container p{
+    margin-top: 20px;
     font-size: 18px;
-    color: #E74A7D;
-    font-style: italic;
+    color: #FBE6CE  ;
     margin-bottom: 20px;
     text-align: center;
+    font-family: 'Posterama';
+    text-shadow: 1px 1px 1px black;
+}
+
+.home-separator{
+    width: 200px;
+    height: 6px;
+    background-color: #D68E39;
 }
 
 .home-second-container{
@@ -69,19 +79,24 @@
     margin-bottom: 10px;
 }
 
+.btn-home{
+    height: 60px;
+    width: 250px;
+    font-weight: 700 !important;
+    font-size: 20px !important;
+    border-radius: 10px !important;
+    text-shadow: 1px 1px 1px black !important;
+}
+
 @media(min-width:1200px){
     .home-page{
         margin-top: 0;
+        align-items: center;
     }
 
     .home-container{
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-evenly;
-        padding: 40px;
-        margin-top: 0;
-        margin-left: 300px; 
+        height: 100vh;
+        margin-left: 85px;
     }
     
     .home-first-container{
@@ -89,19 +104,18 @@
     }
     
     .home-first-container h1{
-        font-size: 40px;
-        text-align: center;
-        font-weight: bold;
-        color: #7D5889;
-        margin-bottom: 30px;
+        font-size: 60px;
+        margin-bottom: 50px;
+        width: 900px;
     }
     
     .home-first-container p{
-        font-size: 18px;
-        text-align: center;
-        color: #E74A7D;
-        font-style: italic;
+        font-size: 28px;
         margin-bottom: 50px;
+    }
+
+    .home-separator{
+        width: 900px;
     }
     
     .home-second-container{

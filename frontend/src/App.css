@@ -9,6 +9,18 @@
   font-weight: 700;
 }
 
+@font-face {
+  font-family: Posterama;
+  src: url('./assets/fonts/Posterama.ttf');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: Posterama Bold;
+  src: url('./assets/fonts/Posterama-Bold.ttf');
+  font-weight: 400;
+}
+
 *, *::before, *::after{
   font-family: 'Instagram Sans', sans-serif;
   margin: 0;
