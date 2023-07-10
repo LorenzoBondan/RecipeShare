@@ -6,6 +6,7 @@ import { AxiosRequestConfig } from 'axios';
 import RecipeFilter, { RecipeFilterData } from 'Components/RecipeFilter';
 import { requestBackend } from 'util/requests';
 import Pagination from "Components/Pagination";
+import RecipeCard from 'Components/RecipeCard';
 
 type ControlComponentsData = {
     activePage: number;
@@ -61,10 +62,10 @@ const Recipes = () => {
                 </div>
                 <div className='row recipes-row'>
                     {recipes?.content
-                        .sort( (a,b) => a.pontuationAverage > b.pontuationAverage ? 1 : -1)
+                        .sort( (a,b) => a.pontuationAverage < b.pontuationAverage ? 1 : -1)
                         .map((recipe) => (
-                            <div className="col-sm-12 col-md-12 col-lg-6 col-xl-6 recipes-column" key={recipe.id}>
-                                <p>{recipe.name}</p>
+                            <div className="col-sm-12 col-md-12 col-lg-6 col-xl-6 recipes-column">
+                                <RecipeCard recipe={recipe} key={recipe.id}/>
                             </div>
                         ))
                     }
