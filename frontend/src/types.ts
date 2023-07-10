@@ -17,14 +17,10 @@ export type User = {
     email: string;
     password: string;
     imgUrl: string;
-    bio: string;
-    verified: boolean;
     roles : Role[];
-    postsId: number[];
-    commentsId: number[];
-    followingId: number[];
-    followersId: number[];
-    postsLikedId: number[];
+    feedbacksId: number[];
+    recipes: Recipe[];
+    favoritesId: number[];
 }
 
 export type Role = {
@@ -32,19 +28,31 @@ export type Role = {
     authority : string;
 }
 
-export type Post = {
+export type Category = {
     id: number;
-    title: string;
-    description: string;
-    date: string;
-    user: User;
-    comments: Comment[];
-    likes: User[];
+    name: string;
+    recipesId: number[];
 }
 
-export type Comment = {
+export type Feedback = {
     id: number;
-    description: string;
-    userId: number;
-    postId : number;
+    comment: string;
+    pontuation: number;
+    moment: string;
+    user: User;
+    recipeId: number;
+}
+
+export type Recipe = {
+    id: number;
+    name: string;
+    ingredients: string;
+    preparation: string;
+    time: number;
+    imgUrl: string;
+    pontuationAverage: number;
+    authorId: number;
+    feedbacks: Feedback[];
+    categories: Category[];
+    usersFavoritedId: number[];
 }
