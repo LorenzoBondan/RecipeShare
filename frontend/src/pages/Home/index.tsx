@@ -1,4 +1,4 @@
-import logo from 'assets/images/sn-logo.png'
+import logo from 'assets/images/recipe-logo.png'
 import './styles.css';
 import { Link } from 'react-router-dom';
 
