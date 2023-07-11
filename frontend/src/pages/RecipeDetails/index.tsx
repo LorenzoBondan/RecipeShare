@@ -10,6 +10,7 @@ import starIcon from 'assets/images/star.png';
 import like from 'assets/images/like.png';
 import likeFilled from 'assets/images/like_filled.png';
 import { toast } from 'react-toastify';
+import FeedbackCard from './FeedbackCard';
 
 type UrlParams = {
     recipeId: string;
@@ -218,6 +219,9 @@ const RecipeDetails = () => {
             </div>
             <div className='recipe-details-feedbacks-container'>
                 <h3>Reviews ({recipe?.feedbacks.length})</h3>
+                {recipe?.feedbacks.map(feedback => (
+                    <FeedbackCard feedback={feedback} onDelete={getRecipe} key={feedback.id}/>
+                ))}
             </div>
         </div>
     );
