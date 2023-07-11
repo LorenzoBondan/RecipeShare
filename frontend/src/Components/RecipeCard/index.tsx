@@ -8,6 +8,7 @@ import { requestBackend } from "util/requests";
 import { AxiosRequestConfig } from "axios";
 import { getTokenData } from "util/auth";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 type Props = {
     recipe: Recipe;
@@ -65,6 +66,10 @@ const RecipeCard = ({recipe, onUpdateFavorite} : Props) => {
           requestBackend(params) 
             .then(response => {
                 onUpdateFavorite();
+                toast.info(`${recipe.name} added to your favorites!`, {
+                    className: 'custom-toast',
+                    bodyClassName: 'custom-toast-body',
+                });
             })
     }
 
@@ -77,6 +82,10 @@ const RecipeCard = ({recipe, onUpdateFavorite} : Props) => {
           requestBackend(params) 
             .then(response => {
                 onUpdateFavorite();
+                toast.info(`${recipe.name} removed from your favorites!`, {
+                    className: 'custom-toast',
+                    bodyClassName: 'custom-toast-body-removed',
+                });
             })
     }
     
