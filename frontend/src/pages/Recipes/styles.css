@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: space-between;
     width: 100%;
-    height: 100vh;
+    height: auto;
 }
 
 .most-popular-recipes-container{
@@ -18,7 +18,7 @@
 .recipes-search-bar-container{
     padding: 20px;
     width: 80%;
-    align-self: flex-start;
+    align-self: center;
 }
 
 .popular-recipes-title, .recipes-row{
@@ -57,14 +57,19 @@
 
 @media(min-width:1200px){
     .recipes-container{
+        height: 100vh;
+    }
+
+    .recipes-container{
         margin-left: 85px;
     }
 
     .recipes-search-bar-container{
-        width: 50%;
+        width: 55%;
         display: flex;
         align-items: flex-start;
         justify-content: flex-start;
+        align-self: flex-start;
     }
 }
 

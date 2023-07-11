@@ -62,25 +62,25 @@ const RecipeFilter = ( {onSubmitFilter} : Props ) => {
                     <button className='user-filter-button-search-icon'>
                         <SearchIcon/>
                     </button>
-                    <div className='user-filter-category-container text-secondary' style={{fontSize:"20px", width:"100%"}}>
-                        <Controller 
-                            name = 'category'
-                            control = {control}
-                            render = {( {field} ) => (
-                            <Select 
-                                {...field}
-                                options={selectCategories?.sort()}
-                                isClearable
-                                classNamePrefix="recipe-filter-select"
-                                placeholder="Category"
-                                getOptionLabel={(category: Category) => category.name}
-                                getOptionValue={(category: Category) => category.id.toString()}
+                </div>
+                <div className='user-filter-category-container text-secondary' style={{fontSize:"20px", width:"100%"}}>
+                    <Controller 
+                        name = 'category'
+                        control = {control}
+                        render = {( {field} ) => (
+                        <Select 
+                            {...field}
+                            options={selectCategories?.sort()}
+                            isClearable
+                            classNamePrefix="recipe-filter-select"
+                            placeholder="Category"
+                            getOptionLabel={(category: Category) => category.name}
+                            getOptionValue={(category: Category) => category.id.toString()}
 
-                                onChange={value => handleChangeCategory(value as Category)}
-                            />    
-                            )}
-                        />
-                    </div>
+                            onChange={value => handleChangeCategory(value as Category)}
+                        />    
+                        )}
+                    />
                 </div>
                 <div className='user-filter-bottom-container'>
                     <button onClick={handleFormClear} className='btn btn-outline-secondary btn-user-filter-clear'>
