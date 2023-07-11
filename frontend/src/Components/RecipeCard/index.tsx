@@ -55,7 +55,7 @@ const RecipeCard = ({recipe, onUpdateFavorite} : Props) => {
                 }
             </div>
         );
-    }
+    };
 
     const addRecipeAsFavorite = () => {
         const params : AxiosRequestConfig = {

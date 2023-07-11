@@ -4,6 +4,7 @@ import Navbar from "Components/Navbar";
 import Admin from "pages/Admin";
 import Auth from "pages/Auth";
 import Home from "pages/Home";
+import RecipeDetails from "pages/RecipeDetails";
 import Recipes from "pages/Recipes";
 import { Redirect, Route, Router, Switch } from "react-router-dom";
 import { isAuthenticated } from "util/auth";
@@ -18,7 +19,7 @@ const Routes = () => {
 
                 <Switch>
                     {isAuthenticated() ? (
-                        <Redirect from='/' to='/feed' exact />
+                        <Redirect from='/' to='/recipes' exact />
                     ) : (
                         <Redirect from='/' to='/home' exact />
                     )}
@@ -29,6 +30,10 @@ const Routes = () => {
 
                     <Route path="/recipes" exact>
                         <Recipes/>
+                    </Route>
+
+                    <Route path="/recipes/:recipeId" exact>
+                        <RecipeDetails/>
                     </Route>
 
                     <Redirect from='/auth' to='/auth/login' exact />
