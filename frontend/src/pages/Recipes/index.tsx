@@ -30,7 +30,7 @@ const Recipes = () => {
           url: "/recipes",
           params: {
             page: controlComponentsData.activePage,
-            size: 12,
+            size: 8,
     
             name: controlComponentsData.filterData.name,
             categoryId: controlComponentsData.filterData.category?.id
@@ -60,7 +60,7 @@ const Recipes = () => {
                 </div>
                 <div className='popular-recipes-title'>
                     <h3>The most popular recipes</h3>
-                    <p>{recipes?.numberOfElements} recipes registered</p>
+                    <p>{recipes?.totalElements} recipes registered</p>
                 </div>
                 <div className='row recipes-row'>
                     {recipes?.content

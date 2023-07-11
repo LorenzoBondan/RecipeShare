@@ -50,7 +50,7 @@ const RecipeCard = ({recipe, onUpdateFavorite} : Props) => {
                     arrayImages.map((_) => (
                         <img src={starIcon} alt="" style={{height:"20px", marginLeft:"5px"}}/>
                     )) : 
-                        <p style={{marginLeft:"5px"}}>0</p>
+                        <p></p>
                 }
             </div>
         );
