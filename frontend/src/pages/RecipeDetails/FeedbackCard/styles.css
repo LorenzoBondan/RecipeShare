@@ -12,7 +12,7 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .feedback-card-user{
@@ -73,5 +73,8 @@
 
 .feedback-card-comment-container p{
     color: #707070;
+    margin-left: 60px;
+    width: 100%;
+    flex-wrap: wrap;
 }
 

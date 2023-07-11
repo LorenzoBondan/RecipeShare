@@ -19,7 +19,7 @@ import org.hibernate.validator.constraints.Range;
 @Table(name = "tb_feedback")
 public class Feedback implements Serializable{
 
-private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

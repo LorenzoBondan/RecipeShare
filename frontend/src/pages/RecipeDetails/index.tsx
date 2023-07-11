@@ -2,7 +2,7 @@
 import { useParams } from 'react-router-dom';
 import './styles.css';
 import { useCallback, useEffect, useState } from 'react';
-import { Recipe, User } from 'types';
+import { Feedback, Recipe, User } from 'types';
 import { AxiosRequestConfig } from 'axios';
 import { requestBackend } from 'util/requests';
 import { getTokenData } from 'util/auth';
@@ -11,10 +11,13 @@ import like from 'assets/images/like.png';
 import likeFilled from 'assets/images/like_filled.png';
 import { toast } from 'react-toastify';
 import FeedbackCard from './FeedbackCard';
+import Modal from 'react-modal';
+import { useForm } from 'react-hook-form';
+import { FaStar } from 'react-icons/fa';
 
 type UrlParams = {
     recipeId: string;
-  }
+}
 
 const RecipeDetails = () => {
 
@@ -144,6 +147,60 @@ const RecipeDetails = () => {
         return str.replace(/(?:^|\s)\S/g, (match) => match.toUpperCase());
     }
 
+    const { register: registerFeedback , handleSubmit: handleSubmitFeedback, formState: {errors} } = useForm<Feedback>();
+
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+
+    function openModal(){
+        setModalIsOpen(true);
+    }
+  
+    function closeModal(){
+        setModalIsOpen(false);
+    }
+
+    const onSubmitFeedback = (formData : Feedback) => {
+        if(user && recipe){
+            formData.user = user;
+            formData.pontuation = pontuation;
+            formData.recipeId = recipe.id;
+
+            const startDate = new Date();
+            startDate.setHours(startDate.getHours() - 3);
+            formData.moment = startDate.toISOString();
+
+            console.log("id: ", formData.id);
+            console.log("comment: ", formData.comment);
+            console.log("moment: ", formData.moment);
+            console.log("User: ", formData.user.name);
+            console.log("Pontuation: ", formData.pontuation);
+            console.log("RecipeId: ", formData.recipeId);
+
+            const params : AxiosRequestConfig = {
+              method: "POST",
+              url : `/feedbacks`,
+              data: formData,
+              withCredentials: true
+            };
+      
+            requestBackend(params)
+              .then(response => {
+                  toast.success("Feedback added");
+                  closeModal();
+                  getRecipe();
+              })
+              .catch((error) => {
+                  console.log(error);
+              })
+        }
+    };
+
+    const [pontuation, setPontuation] = useState(0);
+
+    const handleStarClick = (index: number) => {
+        setPontuation(index + 1);
+    };
+
     return(
         <div className='recipe-details-container'>
             <div className='recipe-info-container '>
@@ -174,7 +231,44 @@ const RecipeDetails = () => {
                         </div>
                     </div>
                     <div className='recipe-info-feedback-buttons'>
-                        <button className='btn btn-primary'>Give a Feedback</button>
+                        <button onClick={openModal} className='btn btn-primary'>Give a Feedback</button>
+                        <Modal 
+                              isOpen={modalIsOpen}
+                              onRequestClose={closeModal}
+                              contentLabel="Example Modal"
+                              overlayClassName="modal-overlay"
+                              className="modal-content"
+                              >
+                              <form onSubmit={handleSubmitFeedback(onSubmitFeedback)} className="work-edit-form">
+                                  <h4>Recipe Feedback</h4>
+                                  <div className="work-edit-input-container">
+                                      <label htmlFor="">Comment</label>
+                                      <input 
+                                        {...registerFeedback("comment", {
+                                        required: 'Campo obrigatório',
+                                        })}
+                                        type="text"
+                                        className={`form-control base-input ${errors.comment ? 'is-invalid' : ''}`}
+                                        placeholder="Comment"
+                                        name="comment"
+                                        />
+                                        <div className='invalid-feedback d-block'>{errors.comment?.message}</div>
+                                  </div>
+                                  <div className='stars-row'>
+                                    {Array.from({ length: 5 }).map((_, index) => (
+                                        <FaStar
+                                        key={index}
+                                        className={`star ${index < pontuation ? 'selected' : ''}`}
+                                        onClick={() => handleStarClick(index)}
+                                        />
+                                    ))}
+                                  </div>
+                                  <div className="work-edit-buttons">
+                                      <button onClick={closeModal} className="btn">Close</button>
+                                      <button className="btn">Submit</button>
+                                  </div>
+                            </form>
+                        </Modal>
                         <div className='recipe-info-buttons'>
                             {user && recipe?.usersFavoritedId.includes(user?.id) ? (
                                 <img src={likeFilled} alt="" onClick={() => removeRecipeAsFavorite()}/>
@@ -189,7 +283,6 @@ const RecipeDetails = () => {
                             <h6>{creator?.name}</h6>
                         </div>
                     </div>
-                    
                 </div>
                 <div className='recipe-image'>
                     <img src={recipe?.imgUrl} alt="" />
