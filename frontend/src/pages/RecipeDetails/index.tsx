@@ -191,10 +191,18 @@ const RecipeDetails = () => {
                     <img src={recipe?.imgUrl} alt="" />
                 </div>
             </div>
-            <div>
-                {ingredients?.map(ingredient => (
-                    <p key={ingredient}>{capitalizeFirstLetter(ingredient)}</p>
-                ))}
+            <div className='recipe-details-ingredients-preparation-container base-card'>
+                <div className='recipe-details-ingredients-container'>
+                    <h3>Ingredients</h3>
+                    {ingredients?.map(ingredient => (
+                        <p key={ingredient}>- {capitalizeFirstLetter(ingredient)}</p>
+                    ))}
+                </div>
+                <div className='recipe-details-preparation-container'>
+                    <h3>Preparation Mode</h3>
+                    <p>{recipe?.preparation}</p>
+                </div>
+
             </div>
         </div>
     );

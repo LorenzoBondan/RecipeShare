@@ -152,6 +152,40 @@
     border-radius: 0 10px 10px 0;
 }
 
+/* */
+
+.recipe-details-ingredients-preparation-container{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 952px;
+    height: auto;
+}
+
+.recipe-details-ingredients-container, .recipe-details-preparation-container{
+    width: 50%;
+    padding: 20px;
+}
+
+.recipe-details-ingredients-container{
+    border-right: 1px solid #bababa;
+}
+
+.recipe-details-ingredients-container h3, .recipe-details-preparation-container h3{
+    margin-bottom: 20px;
+    color: black;
+    font-family: 'Posterama', sans-serif;
+    font-size: 26px;
+}
+
+.recipe-details-ingredients-container p, .recipe-details-preparation-container p{
+    margin-bottom: 15px;
+    color: #4a4a4a;
+    font-size: 18px;
+}
+
 @media(min-width:1200px){
     .recipe-details-container{
         margin-left: 85px;
