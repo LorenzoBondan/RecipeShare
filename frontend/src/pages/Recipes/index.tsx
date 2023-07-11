@@ -16,7 +16,7 @@ type ControlComponentsData = {
 const Recipes = () => {
 
     // pagination and filter
-    const [controlComponentsData, setControlComponentsData] = useState<ControlComponentsData>({activePage:0, filterData: { name: '' },});
+    const [controlComponentsData, setControlComponentsData] = useState<ControlComponentsData>({activePage:0, filterData: { name: '', category: null },});
 
     const handlePageChange = (pageNumber : number) => {
       setControlComponentsData({activePage: pageNumber, filterData: controlComponentsData.filterData});
@@ -32,7 +32,8 @@ const Recipes = () => {
             page: controlComponentsData.activePage,
             size: 12,
     
-            name: controlComponentsData.filterData.name
+            name: controlComponentsData.filterData.name,
+            categoryId: controlComponentsData.filterData.category?.id
           },
         }
       
