@@ -145,18 +145,16 @@ const RecipeDetails = () => {
 
     return(
         <div className='recipe-details-container'>
-            <div className='recipe-info-container base-card'>
+            <div className='recipe-info-container '>
                 <div className='recipe-info-content'>
                     <div className='recipe-info-title'>
                         <h1>{recipe?.name}</h1>
-                    </div>
-                    <div className='recipe-info-feedback'>
-                        {recipe && plotStars(recipe?.pontuationAverage)}
-                    </div>
-                    <div className='recipe-info-creator'>   
-                        <p>Published by</p>
-                        <img src={creator?.imgUrl} alt="" />
-                        <h6>{creator?.name}</h6>
+                        {recipe && recipe?.feedbacks.length > 0 && 
+                            <div className='recipe-info-feedback'>
+                                {recipe && plotStars(recipe?.pontuationAverage)}
+                                <p>({recipe?.pontuationAverage})</p>
+                            </div>
+                        }
                     </div>
                     <div className='recipe-info-time'>
                         <div className='recipe-info-item'>
@@ -184,6 +182,11 @@ const RecipeDetails = () => {
                             )}
                             <p>{recipe?.usersFavoritedId.length}</p>
                         </div>
+                        <div className='recipe-info-creator'>   
+                            <p>Published by</p>
+                            <img src={creator?.imgUrl} alt="" />
+                            <h6>{creator?.name}</h6>
+                        </div>
                     </div>
                     
                 </div>
@@ -191,7 +194,7 @@ const RecipeDetails = () => {
                     <img src={recipe?.imgUrl} alt="" />
                 </div>
             </div>
-            <div className='recipe-details-ingredients-preparation-container base-card'>
+            <div className='recipe-details-ingredients-preparation-container '>
                 <div className='recipe-details-ingredients-container'>
                     <h3>Ingredients</h3>
                     {ingredients?.map(ingredient => (
@@ -200,10 +203,10 @@ const RecipeDetails = () => {
                 </div>
                 <div className='recipe-details-preparation-container'>
                     <h3>Preparation Mode</h3>
-                    <p>{recipe?.preparation}</p>
+                    <p>- {recipe?.preparation}</p>
                 </div>
             </div>
-            <div className='recipe-details-tags-container base-card'>
+            <div className='recipe-details-tags-container '>
                 <h3>Recipe tags</h3>
                 <ul className='recipe-tags'>
                     {recipe?.categories.map(category => (
@@ -212,6 +215,9 @@ const RecipeDetails = () => {
                         </li>
                     ))}
                 </ul>
+            </div>
+            <div className='recipe-details-feedbacks-container'>
+                <h3>Reviews ({recipe?.feedbacks.length})</h3>
             </div>
         </div>
     );
