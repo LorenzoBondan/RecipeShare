@@ -202,7 +202,16 @@ const RecipeDetails = () => {
                     <h3>Preparation Mode</h3>
                     <p>{recipe?.preparation}</p>
                 </div>
-
+            </div>
+            <div className='recipe-details-tags-container base-card'>
+                <h3>Recipe tags</h3>
+                <ul className='recipe-tags'>
+                    {recipe?.categories.map(category => (
+                        <li>
+                            <p key={category.id}>{category.name}</p>
+                        </li>
+                    ))}
+                </ul>
             </div>
         </div>
     );
