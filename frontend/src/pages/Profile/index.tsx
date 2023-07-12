@@ -40,7 +40,6 @@ const Profile = () => {
         getUser();
     }, [getUser]);
 
-
     const [modalIsOpen, setIsOpen] = useState(false);
 
     function openModal(){
@@ -94,7 +93,6 @@ const Profile = () => {
                 <div className='profile-image'>
                     <img src={user?.imgUrl} alt="" />
                 </div>
-                
                 <h2>{user?.name}</h2>
                 <p style={{fontFamily: "Be Vietnam Pro"}}>{user?.email}</p>
                 <div className='profile-user-badge'>

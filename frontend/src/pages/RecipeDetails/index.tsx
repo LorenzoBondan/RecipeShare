@@ -2,7 +2,7 @@
 import { useParams } from 'react-router-dom';
 import './styles.css';
 import { useCallback, useEffect, useState } from 'react';
-import { Feedback, Recipe, User } from 'types';
+import { Category, Feedback, Recipe, User } from 'types';
 import { AxiosRequestConfig } from 'axios';
 import { requestBackend } from 'util/requests';
 import { getTokenData } from 'util/auth';
@@ -12,8 +12,9 @@ import likeFilled from 'assets/images/like_filled.png';
 import { toast } from 'react-toastify';
 import FeedbackCard from './FeedbackCard';
 import Modal from 'react-modal';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { FaStar } from 'react-icons/fa';
+import Select from 'react-select';
 
 type UrlParams = {
     recipeId: string;
@@ -198,6 +199,80 @@ const RecipeDetails = () => {
         setPontuation(index + 1);
     };
 
+    const amITheAuthor = () => {
+        if(recipe?.authorId === user?.id){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    const { register: registerRecipe, handleSubmit: handleSubmitRecipe, setValue: setValueRecipe, control } = useForm<Recipe>();
+
+    useEffect(() => {
+        requestBackend({url:`/recipes/${recipeId}`, withCredentials:true})
+            .then((response) => {
+                const recipe = response.data as Recipe;
+
+                setValueRecipe('name', recipe.name);
+                setValueRecipe('imgUrl', recipe.imgUrl);
+                setValueRecipe('authorId', recipe.authorId);
+                setValueRecipe('ingredients', recipe.ingredients);
+                setValueRecipe('preparation', recipe.preparation);
+                setValueRecipe('time', recipe.time);
+                setValueRecipe('categories', recipe.categories);
+                setValueRecipe('feedbacks', recipe.feedbacks);
+                setValueRecipe('pontuationAverage', recipe.pontuationAverage);
+                setValueRecipe('usersFavoritedId', recipe.usersFavoritedId);
+            })
+    }, [recipeId, setValueRecipe]);
+
+    const [recipeModalIsOpen, setRecipeModalIsOpen] = useState(false);
+
+    function openRecipeModal(){
+        setRecipeModalIsOpen(true);
+    }
+  
+    function closeRecipeModal(){
+        setRecipeModalIsOpen(false);
+        
+    }
+
+    const onSubmitRecipe = (formData : Recipe) => {
+        if(user && recipe){
+
+            const params : AxiosRequestConfig = {
+              method: "PUT",
+              url : `/recipes/${recipe.id}`,
+              data: formData,
+              withCredentials: true
+            };
+      
+            requestBackend(params)
+              .then(response => {
+                  toast.success("Recipe updated");
+                  closeRecipeModal();
+                  getRecipe();
+                  console.log(formData);
+                  
+              })
+              .catch((error) => {
+                  console.log(error);
+              })
+        }
+    };
+
+    const [selectCategories, setSelectCategories] = useState<Category[]>();
+
+    useEffect(() => {
+      requestBackend({ url: "/categories", withCredentials: true }).then(
+        (response) => {
+          setSelectCategories(response.data.content);
+        }
+      );
+    }, []);
+
     return(
         <div className='recipe-details-container'>
             <div className='recipe-info-container '>
@@ -274,11 +349,110 @@ const RecipeDetails = () => {
                             )}
                             <p>{recipe?.usersFavoritedId.length}</p>
                         </div>
+                        {amITheAuthor() ? (
+                            <div className='recipe-info-creator'> 
+                            <button onClick={openRecipeModal} className='btn btn-primary'>Edit Recipe</button>
+                                <Modal 
+                                    isOpen={recipeModalIsOpen}
+                                    onRequestClose={closeRecipeModal}
+                                    contentLabel="Example Modal"
+                                    overlayClassName="modal-overlay"
+                                    className="modal-content"
+                                    >
+                                    <form onSubmit={handleSubmitRecipe(onSubmitRecipe)} className="recipe-feedback-form">
+                                        <h4>Edit Recipe</h4>
+                                        <div className='recipe-feedback-input-container'>
+                                            <label htmlFor="">Name</label>
+                                            <input 
+                                                {...registerRecipe("name", {
+                                                required: 'Campo obrigatório',
+                                                })}
+                                                type="text"
+                                                className={`form-control base-input`}
+                                                placeholder="Name"
+                                                name="name"
+                                            />
+                                            <label htmlFor="">Ingredients</label>
+                                            <input 
+                                                {...registerRecipe("ingredients", {
+                                                required: 'Campo obrigatório',
+                                                })}
+                                                type="text"
+                                                className={`form-control base-input`}
+                                                placeholder="Ingredients"
+                                                name="ingredients"
+                                            />
+                                            <label htmlFor="">Preparation</label>
+                                            <input 
+                                                {...registerRecipe("preparation", {
+                                                required: 'Campo obrigatório',
+                                                })}
+                                                type="text"
+                                                className={`form-control base-input`}
+                                                placeholder="Preparation"
+                                                name="preparation"
+                                            />
+                                            <label htmlFor="">Minutes</label>
+                                            <input 
+                                                {...registerRecipe("time", {
+                                                required: 'Campo obrigatório',
+                                                })}
+                                                type="text"
+                                                className={`form-control base-input`}
+                                                placeholder="Minutes"
+                                                name="time"
+                                            />
+                                            <label htmlFor="">Img Url</label>
+                                            <input 
+                                                {...registerRecipe("imgUrl", {
+                                                    required: 'Campo obrigatório',
+                                                    pattern: { 
+                                                    value: /^(https?|chrome):\/\/[^\s$.?#].[^\s]*$/gm,
+                                                    message: 'Insira uma URL válida'
+                                                    }
+                                                })}
+                                                type="text"
+                                                className={`form-control base-input`}
+                                                placeholder="URL of recipe's image"
+                                                name="imgUrl"
+                                            />
+                                            <label htmlFor="">
+                                                Categories
+                                            </label>
+                                            <Controller
+                                                name="categories"
+                                                rules={{ required: false }}
+                                                control={control}
+                                                render={({ field }) => (
+                                                <Select
+                                                    {...field}
+                                                    options={selectCategories?.sort((a, b) =>
+                                                    a.name > b.name ? 1 : -1
+                                                    )}
+                                                    classNamePrefix="followers-crud-select"
+                                                    placeholder="Categories"
+                                                    isMulti
+                                                    getOptionLabel={(c: Category) => c.name}
+                                                    getOptionValue={(c: Category) => c.id.toString()}
+                                                />
+                                                )}
+                                            />
+                                        </div>
+                                        <div className="recipe-feedback-buttons">
+                                            <button onClick={closeRecipeModal} className="btn">Close</button>
+                                            <button className="btn">Submit</button>
+                                        </div>
+                                    </form>
+                                </Modal>
+                            </div>
+                        ) : (
                         <div className='recipe-info-creator'>   
                             <p>Published by</p>
                             <img src={creator?.imgUrl} alt="" />
                             <h6>{creator?.name}</h6>
                         </div>
+                        )}
+
                     </div>
                 </div>
                 <div className='recipe-image'>
