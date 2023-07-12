@@ -160,6 +160,7 @@ const RecipeDetails = () => {
         setModalIsOpen(false);
         setValue('comment', '');
         setPontuation(0);
+        setAlertMessage('');
     }
 
     const onSubmitFeedback = (formData : Feedback) => {
@@ -188,7 +189,11 @@ const RecipeDetails = () => {
                   setPontuation(0);
               })
               .catch((error) => {
-                  console.log(error);
+                  if (error.response && error.response.status === 400) {
+                    setAlertMessage('You have already provided a feedback for this recipe.');
+                  } else {
+                    setAlertMessage('An error occurred while processing the request.');
+                  }
               })
         }
     };
@@ -273,6 +278,8 @@ const RecipeDetails = () => {
       );
     }, []);
 
+    const [alertMessage, setAlertMessage] = useState('');
+
     return(
         <div className='recipe-details-container'>
             <div className='recipe-info-container '>
@@ -335,6 +342,7 @@ const RecipeDetails = () => {
                                        />
                                         <div className='invalid-feedback d-block'>{errors.comment?.message}</div>
                                   </div>
+                                  {alertMessage && <p className="error-message">{alertMessage}</p>}
                                   <div className="recipe-feedback-buttons">
                                       <button onClick={closeModal} className="btn">Close</button>
                                       <button className="btn">Submit</button>

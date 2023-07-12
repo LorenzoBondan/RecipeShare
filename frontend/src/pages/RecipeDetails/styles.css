@@ -309,6 +309,10 @@
     border-bottom: 2px solid #e3e3e3;
 }
 
+.error-message{
+    color: darkred;
+}
+
 @media(min-width:1200px){
     .recipe-details-container{
         margin-left: 85px;

@@ -50,7 +50,6 @@ ul {
 }
 
 .base-card{
-  
   box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, .25);
@@ -67,6 +66,7 @@ ul {
   color: #263238;
   height: 40px;
   border: #9E9E9E 1px solid;
+  margin-bottom: 20px;
 }
 
 
