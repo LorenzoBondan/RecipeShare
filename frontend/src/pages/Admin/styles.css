@@ -3,7 +3,6 @@
     flex-direction: column;
     width: 100%;
     padding: 20px;
-    margin-top: 250px;
 }
 
 .admin-content{
@@ -13,8 +12,9 @@
 @media(min-width:1200px){
     .admin-container{
         display: flex;
+        height: 100vh;
         flex-direction: row;
         margin-top: 0;
-        margin-left: 300px;
+        margin-left: 85px;
     }
 }

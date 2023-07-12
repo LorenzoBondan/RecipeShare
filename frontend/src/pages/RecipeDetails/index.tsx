@@ -157,6 +157,8 @@ const RecipeDetails = () => {
   
     function closeModal(){
         setModalIsOpen(false);
+        setValue('comment', '');
+        setPontuation(0);
     }
 
     const onSubmitFeedback = (formData : Feedback) => {

@@ -34,23 +34,23 @@ function UserCrudCard( {user, onDelete} : Props ) {
     return (
       <>
         <div className='base-card user-crud-card'>
-
             <div className='user-crud-card-top-container'>
               <img src={user.imgUrl} alt="" />
               <h3>{user.name}</h3>
             </div>
 
             <div className='user-crud-card-buttons-container'>
+                <button className='btn btn-outline-danger user-crud-card-button delete-button'
+                  onClick={() => handleDelete(user.id)}
+                  >
+                  DELETE
+                </button>
               <Link to={`/admin/users/${user.id}`}>
                   <button className='btn btn-outline-secondary user-crud-card-button'>
                     EDIT
                   </button>
                 </Link>
-              <button className='btn btn-outline-danger user-crud-card-button delete-button'
-                onClick={() => handleDelete(user.id)}
-                >
-                  DELETE
-                </button>
+              
             </div>
         </div>
         

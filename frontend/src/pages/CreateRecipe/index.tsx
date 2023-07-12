@@ -89,7 +89,7 @@ const CreateRecipe = () => {
   return (
     <div className="create-recipe-container">
       <h1>Create New Recipe</h1>
-        <div className="base-card post-card-form-card">
+        <div className=" post-card-form-card">
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="row post-crud-inputs-container">
               <div className="post-crud-inputs-left-container">

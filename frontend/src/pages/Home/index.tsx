@@ -2,6 +2,8 @@ import logo from 'assets/images/recipe-logo.png'
 import './styles.css';
 import background from 'assets/images/home-background.png';
 import TopNavbar from 'pages/Home/TopNavbar';
+import { isAuthenticated } from 'util/auth';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
     return(
@@ -21,7 +23,15 @@ const Home = () => {
                         <img src={logo} alt="logo" />
                     </div>
                     <div className='home-second-container-content'>
-                        <button className='btn btn-primary btn-home'>Start cooking!</button>
+                        {isAuthenticated() ? (
+                            <Link to={`/recipes`}>
+                                <button className='btn btn-primary btn-home'>Start cooking!</button>
+                            </Link>
+                        ) : (
+                            <Link to={`/auth`}>
+                                <button className='btn btn-primary btn-home'>Start cooking!</button>
+                            </Link>
+                        )}
                     </div>
                 </div>
             </div>
