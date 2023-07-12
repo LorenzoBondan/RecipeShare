@@ -147,7 +147,7 @@ const RecipeDetails = () => {
         return str.replace(/(?:^|\s)\S/g, (match) => match.toUpperCase());
     }
 
-    const { register: registerFeedback , handleSubmit: handleSubmitFeedback, formState: {errors} } = useForm<Feedback>();
+    const { register: registerFeedback , handleSubmit: handleSubmitFeedback, formState: {errors}, setValue } = useForm<Feedback>();
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -188,6 +188,9 @@ const RecipeDetails = () => {
                   toast.success("Feedback added");
                   closeModal();
                   getRecipe();
+                  
+                  setValue('comment', '');
+                  setPontuation(0);
               })
               .catch((error) => {
                   console.log(error);
@@ -239,21 +242,8 @@ const RecipeDetails = () => {
                               overlayClassName="modal-overlay"
                               className="modal-content"
                               >
-                              <form onSubmit={handleSubmitFeedback(onSubmitFeedback)} className="work-edit-form">
+                              <form onSubmit={handleSubmitFeedback(onSubmitFeedback)} className="recipe-feedback-form">
                                   <h4>Recipe Feedback</h4>
-                                  <div className="work-edit-input-container">
-                                      <label htmlFor="">Comment</label>
-                                      <input 
-                                        {...registerFeedback("comment", {
-                                        required: 'Campo obrigatório',
-                                        })}
-                                        type="text"
-                                        className={`form-control base-input ${errors.comment ? 'is-invalid' : ''}`}
-                                        placeholder="Comment"
-                                        name="comment"
-                                        />
-                                        <div className='invalid-feedback d-block'>{errors.comment?.message}</div>
-                                  </div>
                                   <div className='stars-row'>
                                     {Array.from({ length: 5 }).map((_, index) => (
                                         <FaStar
@@ -263,7 +253,20 @@ const RecipeDetails = () => {
                                         />
                                     ))}
                                   </div>
-                                  <div className="work-edit-buttons">
+                                  <div className="recipe-feedback-input-container">
+                                      <label htmlFor="">Comment</label>
+                                      <textarea 
+                                        rows={5} 
+                                        {...registerFeedback("comment", {
+                                        required: 'Campo obrigatório',
+                                        })}
+                                        className={`form-control base-input ${errors.comment ? 'is-invalid' : ''} h-auto`}
+                                        placeholder="Comment"
+                                        name="comment"
+                                       />
+                                        <div className='invalid-feedback d-block'>{errors.comment?.message}</div>
+                                  </div>
+                                  <div className="recipe-feedback-buttons">
                                       <button onClick={closeModal} className="btn">Close</button>
                                       <button className="btn">Submit</button>
                                   </div>

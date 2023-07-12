@@ -88,7 +88,7 @@ const CreateRecipe = () => {
 
   return (
     <div className="create-recipe-container">
-      <h1>Create New recipe</h1>
+      <h1>Create New Recipe</h1>
         <div className="base-card post-card-form-card">
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="row post-crud-inputs-container">
@@ -111,10 +111,9 @@ const CreateRecipe = () => {
                   </div>
                 </div>
               </div>
-
               <div className="post-crud-inputs-left-container">
                 <div className="margin-bottom-30">
-                  <label htmlFor="">Ingredients</label>
+                  <label htmlFor="">Ingredients (separe them using a ,)</label>
                   <input
                     {...register("ingredients", {
                       required: "Campo obrigatório",
@@ -131,7 +130,6 @@ const CreateRecipe = () => {
                   </div>
                 </div>
               </div>
-
               <div className="post-crud-inputs-left-container">
                 <div className="margin-bottom-30">
                   <label htmlFor="">Preparation</label>
@@ -150,7 +148,6 @@ const CreateRecipe = () => {
                     {errors.preparation?.message}
                   </div>
                 </div>
-
                 <div className="post-crud-inputs-left-container">
                 <div className="margin-bottom-30">
                   <label htmlFor="">Minutes</label>
@@ -169,7 +166,6 @@ const CreateRecipe = () => {
                     {errors.time?.message}
                   </div>
                 </div>
-
                 <div className='margin-bottom-30'>
                   <label htmlFor="">Img Url</label>  
                     <input 
@@ -187,7 +183,6 @@ const CreateRecipe = () => {
                     />
                   <div className='invalid-feedback d-block'>{errors.imgUrl?.message}</div>
                 </div>
-
                 <div className="margin-bottom-30">
                   <label htmlFor="">
                     Categories
@@ -217,7 +212,6 @@ const CreateRecipe = () => {
                   )}
                 </div>
               </div>
-
               <div className="post-crud-buttons-container">
                 <button
                   className="btn btn-outline-secondary post-crud-buttons"
@@ -225,7 +219,6 @@ const CreateRecipe = () => {
                 >
                   CANCEL
                 </button>
-
                 <button
                   className="btn btn-primary text-white post-crud-buttons"
                   onClick={handleSubmit(onSubmit)}
