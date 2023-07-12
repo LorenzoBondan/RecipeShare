@@ -2,10 +2,11 @@
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    justify-content: space-evenly;
+    justify-content: center;
     padding: 20px;
     width: 100%;
     height: auto;
+    margin-top: 20px;
 }
 
 .profile-user-info{
@@ -30,19 +31,11 @@
     border-top: 1px solid #eaeaea;
     text-align: center;
     color: black;
-    font-family: 'Posterama', sans-serif;
+    font-family: "Be Vietnam Pro", sans-serif;
     font-weight: 400;
     font-size: 28px;
     flex-wrap: wrap;
     margin-bottom: 2px;
-}
-
-.profile-user-recipes{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    padding: 20px;
 }
 
 .profile-user-badge{
@@ -94,13 +87,62 @@
     justify-content: center;
     align-items: center;
     border-radius: 8px;
-    background: linear-gradient(360deg, #8e5e26 10%, #fbe6ceaf 100%);
+    background-image: linear-gradient(135deg, #8e5e26, #fbe6ceaf);
     font-family: 'Posterama', sans-serif;
+}
+
+/* my recipes */
+
+.profile-user-recipes{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0 20px;
+}
+
+.profile-my-recipes, .profile-favorited-recipes{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px;
+    margin-bottom: 20px;
+    width: 700px;
+}
+
+.profile-my-recipes h3, .profile-favorited-recipes h3{
+    width: 100%;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #eaeaea;
+    text-align: left;
+    color: black;
+    font-family: 'Posterama', sans-serif;
+    font-weight: 400;
+    font-size: 28px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.profile-user-recipes h6{
+    margin-bottom: 0;
+    margin-left: 5px;
+    color: #8e5e26;
+}
+
+.my-recipes-row{
+    max-width: 99%;
+    height: 488px;
+    overflow-y: scroll;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
 }
 
 @media(min-width:1200px){
     .profile-container{
         margin-left: 85px;
-        height: 100vh;
     }
 }
