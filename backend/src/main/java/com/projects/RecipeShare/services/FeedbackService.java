@@ -3,6 +3,7 @@ package com.projects.RecipeShare.services;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
@@ -46,27 +47,30 @@ public class FeedbackService{
 		Feedback entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found."));
 		return new FeedbackDTO(entity);
 	}
-
+	
 	@Transactional
 	public FeedbackDTO insert(FeedbackDTO dto) {
-		Feedback entity = new Feedback();
-		User user = authService.authenticated();
-		
-		// an user just can make one feedback for each recipe
-		boolean found = false;
-		for(Feedback feedback : user.getFeedbacks()) {
-			if(feedback.getRecipe().getId() == dto.getRecipeId()) {
-				found = true;
-			}
-		}
-		if(!found) {
-			copyDtoToEntity(dto, entity);
-			entity = repository.save(entity);
-			return new FeedbackDTO(entity);
-		}
-		else {
-			throw new DataBaseException("The user have already done a feedback about this recipe");
-		}
+	    Feedback entity = new Feedback();
+	    User user = authService.authenticated();
+
+	    // an user just can provide one feedback for each recipe
+	    boolean found = false;
+	    for (Feedback feedback : user.getFeedbacks()) {
+	        if (feedback.getRecipe().getId() == dto.getRecipeId()) {
+	            found = true;
+	        }
+	    }
+	    if (!found) {
+	        try {
+	            copyDtoToEntity(dto, entity);
+	            entity = repository.save(entity);
+	            return new FeedbackDTO(entity);
+	        } catch (DataAccessException e) {
+	            throw new DataBaseException("Failed to insert feedback due to a database error: " + e);
+	        }
+	    } else {
+	        throw new DataBaseException("The user has already provided feedback for this recipe.");
+	    }
 	}
 	
 	public void delete(Long id) {

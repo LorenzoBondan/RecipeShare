@@ -24,7 +24,7 @@ import javax.persistence.Table;
 @Table(name = "tb_recipe")
 public class Recipe implements Serializable{
 
-private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

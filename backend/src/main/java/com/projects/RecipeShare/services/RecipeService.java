@@ -100,6 +100,7 @@ public class RecipeService{
 		entity.setPreparation(dto.getPreparation());
 		entity.setTime(dto.getTime());
 		entity.setImgUrl(dto.getImgUrl());
+		entity.setAuthor(userRepository.getOne(dto.getAuthorId()));
 
 		for (FeedbackDTO fedDto : dto.getFeedbacks()) {
 			Feedback feedback = feedbackRepository.getOne(fedDto.getId());

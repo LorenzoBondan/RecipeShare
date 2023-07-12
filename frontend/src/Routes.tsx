@@ -3,6 +3,7 @@ import Footer from "Components/Footer";
 import Navbar from "Components/Navbar";
 import Admin from "pages/Admin";
 import Auth from "pages/Auth";
+import CreateRecipe from "pages/CreateRecipe";
 import Home from "pages/Home";
 import RecipeDetails from "pages/RecipeDetails";
 import Recipes from "pages/Recipes";
@@ -34,6 +35,10 @@ const Routes = () => {
 
                     <Route path="/recipes/:recipeId" exact>
                         <RecipeDetails/>
+                    </Route>
+
+                    <Route path="/create" exact>
+                        <CreateRecipe/>
                     </Route>
 
                     <Redirect from='/auth' to='/auth/login' exact />
