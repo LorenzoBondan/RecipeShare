@@ -86,6 +86,7 @@
     transition: 0.5s;
     overflow: hidden;
     width: 100%;
+    cursor: pointer;
 }
 
 .profile-user-edit a h6{
