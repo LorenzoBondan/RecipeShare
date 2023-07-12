@@ -166,17 +166,9 @@ const RecipeDetails = () => {
             formData.user = user;
             formData.pontuation = pontuation;
             formData.recipeId = recipe.id;
-
             const startDate = new Date();
             startDate.setHours(startDate.getHours() - 3);
             formData.moment = startDate.toISOString();
-
-            console.log("id: ", formData.id);
-            console.log("comment: ", formData.comment);
-            console.log("moment: ", formData.moment);
-            console.log("User: ", formData.user.name);
-            console.log("Pontuation: ", formData.pontuation);
-            console.log("RecipeId: ", formData.recipeId);
 
             const params : AxiosRequestConfig = {
               method: "POST",

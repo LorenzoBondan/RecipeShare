@@ -5,6 +5,7 @@ import Admin from "pages/Admin";
 import Auth from "pages/Auth";
 import CreateRecipe from "pages/CreateRecipe";
 import Home from "pages/Home";
+import Profile from "pages/Profile";
 import RecipeDetails from "pages/RecipeDetails";
 import Recipes from "pages/Recipes";
 import { Redirect, Route, Router, Switch } from "react-router-dom";
@@ -39,6 +40,10 @@ const Routes = () => {
 
                     <Route path="/create" exact>
                         <CreateRecipe/>
+                    </Route>
+
+                    <Route path="/profile" exact>
+                        <Profile/>
                     </Route>
 
                     <Redirect from='/auth' to='/auth/login' exact />

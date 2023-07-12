@@ -1,0 +1,106 @@
+.profile-container{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    padding: 20px;
+    width: 100%;
+    height: auto;
+}
+
+.profile-user-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.profile-user-info img{
+    border-radius: 20px;
+    height: 280px;
+    width: 280px;
+    box-shadow: 2px 2px 2px silver;
+    margin-bottom: 20px;
+}
+
+.profile-user-info h2{
+    width: 100%;
+    padding-top: 10px;
+    border-top: 1px solid #eaeaea;
+    text-align: center;
+    color: black;
+    font-family: 'Posterama', sans-serif;
+    font-weight: 400;
+    font-size: 28px;
+    flex-wrap: wrap;
+    margin-bottom: 2px;
+}
+
+.profile-user-recipes{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 20px;
+}
+
+.profile-user-badge{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 20px;
+    border: 1px solid #eaeaea;
+}
+
+.profile-user-badge p{
+    margin-bottom: 0;
+}
+
+.profile-badge-item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 33%;
+}
+
+.profile-badge-item h5{
+    color: #4a4a4a;
+    font-weight: 700;
+}
+
+.profile-badge-item p{
+    color: #bababa;
+}
+
+.profile-user-edit{
+    margin-top: 25px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 15px;
+    border-top: 1px solid #eaeaea;
+}
+
+.profile-user-edit button{
+    width: 100%;
+    height: 40px;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    background: linear-gradient(360deg, #8e5e26 10%, #fbe6ceaf 100%);
+    font-family: 'Posterama', sans-serif;
+}
+
+@media(min-width:1200px){
+    .profile-container{
+        margin-left: 85px;
+        height: 100vh;
+    }
+}
