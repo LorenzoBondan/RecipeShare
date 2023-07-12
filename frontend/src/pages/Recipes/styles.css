@@ -57,11 +57,8 @@
 
 @media(min-width:1200px){
     .recipes-container{
-        height: 100vh;
-    }
-
-    .recipes-container{
         margin-left: 85px;
+        padding-bottom: 20px;
     }
 
     .recipes-search-bar-container{

@@ -63,7 +63,13 @@ const Profile = () => {
                     </div>
                 </div>
                 <div className='profile-user-edit'>
-                    <button className='btn btn-primary'><BsFillGearFill style={{marginRight:"3px"}}/> Edit Profile</button>
+                    <a href="">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <h6><BsFillGearFill style={{marginRight:"3px"}}/>Edit Profile</h6>
+                    </a>
                 </div>
             </div>
             <div className='profile-user-recipes'>
