@@ -106,7 +106,7 @@
 .recipe-info-feedback-buttons button{
     background: linear-gradient(360deg, #8e5e26 10%, #fbe6ceaf 100%);
     border: none;
-    width: 30%;
+    width: auto;
 }
 
 .recipe-info-buttons{
