@@ -6,6 +6,7 @@ import { requestBackend } from 'util/requests';
 import './styles.css';
 import { User } from 'types';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 
 const RegisterForm = () => {
@@ -31,6 +32,7 @@ const RegisterForm = () => {
                 console.log('Success', response.data);
                 history.push("/auth/login");
                 setAlertMessage('');
+                toast.success("User registered");
             })
             .catch((error) => {
                 if (error.response && error.response.status === 422) {

@@ -1,9 +1,9 @@
 .profile-container{
     display: flex;
-    flex-direction: row;
-    align-items: flex-start;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    padding: 20px;
+    padding: 10px;
     width: 100%;
     height: auto;
     margin-top: 20px;
@@ -14,7 +14,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    padding: 10px;
+    margin-bottom: 20px;
 }
 
 .profile-user-info img{
@@ -174,19 +175,19 @@
 .profile-user-recipes{
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    padding: 0 20px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
 }
 
 .profile-my-recipes, .profile-favorited-recipes{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
-    padding: 20px;
+    justify-content: center;
+    padding: 10px;
     margin-bottom: 20px;
-    width: 700px;
+    width: 300px;
 }
 
 .profile-my-recipes h3, .profile-favorited-recipes h3{
@@ -219,9 +220,47 @@
     justify-content: flex-start;
 }
 
+@media(min-width:576px){
+    .profile-user-info{
+        padding: 20px;
+    }
+
+    .profile-user-recipes{
+        padding: 0 20px;
+    }
+
+    .profile-my-recipes, .profile-favorited-recipes{
+        padding: 20px;
+        width: 500px;
+    }
+}
+
+@media(min-width:992px){
+    .profile-my-recipes, .profile-favorited-recipes{
+        width: 700px;
+    }
+}
+
 @media(min-width:1200px){
     .profile-container{
         margin-left: 85px;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: center;
+        padding: 20px;
+    }
+
+    .profile-user-info{
+        margin-bottom: 0px;
+    }
+
+    .profile-user-recipes{
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+
+    .profile-my-recipes, .profile-favorited-recipes{
+        justify-content: flex-start;
     }
 }
 
