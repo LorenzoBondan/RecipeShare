@@ -9,7 +9,6 @@
     text-align: center;
     letter-spacing: -0.015em;
     color: #263238;
-
     margin-top: 70px;
     margin-bottom: 50px;
     text-transform: uppercase;
@@ -17,15 +16,6 @@
 
 input[type=text], input[type=password]{
     font-size: 18px;
-}
-
-.login-link-recover {
-    font-size: 1em;
-    letter-spacing: -0.015em;
-    color: #407bff;
-    display: block;
-    margin-bottom: 60px;
-    text-decoration: none;
 }
 
 .login-submit {

@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { requestBackend } from 'util/requests';
 import './styles.css';
 import { User } from 'types';
+import { useState } from 'react';
 
 
 const RegisterForm = () => {
@@ -29,6 +30,14 @@ const RegisterForm = () => {
             .then(response => {
                 console.log('Success', response.data);
                 history.push("/auth/login");
+                setAlertMessage('');
+            })
+            .catch((error) => {
+                if (error.response && error.response.status === 422) {
+                  setAlertMessage('This email is already in use!');
+                } else {
+                  setAlertMessage('An error occurred while processing the request.');
+                }
             })
     };
 
@@ -36,18 +45,16 @@ const RegisterForm = () => {
         history.push("/home")
     }
 
+    const [alertMessage, setAlertMessage] = useState('');
+
     return(
         <div className="register-container">
-
             <div className="base-card user-register-form-card">
-                <h1>REGISTER</h1>
-
+                <h1>Register</h1>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className='row user-crud-inputs-container'>
                         <div className='user-crud-inputs-left-container'>
-
                             <div className='margin-bottom-30'>
-                                <label htmlFor="" style={{color:"black"}}>Name</label>
                                 <input 
                                     {...register("name", {
                                     required: 'Campo obrigatório',
@@ -59,9 +66,7 @@ const RegisterForm = () => {
                                 />
                                 <div className='invalid-feedback d-block'>{errors.name?.message}</div>
                             </div>
-
                             <div className='margin-bottom-30'>
-                                <label htmlFor="" style={{color:"black"}}>Email</label>
                                 <input 
                                     {...register("email", {
                                     pattern: { 
@@ -76,23 +81,19 @@ const RegisterForm = () => {
                                 />
                                 <div className='invalid-feedback d-block'>{errors.email?.message}</div>
                             </div>
-
-
                             <div className='margin-bottom-30'>
-                                <label htmlFor="" style={{color:"black"}}>Password</label>
                                 <input 
                                     {...register("password", {
                                     })}
-                                    type="text"
+                                    type="password"
                                     className={`form-control base-input ${errors.password ? 'is-invalid' : ''}`}
                                     placeholder="Password"
                                     name="password"
                                 />
                                 <div className='invalid-feedback d-block'>{errors.password?.message}</div>
-
                             </div>
+                            {alertMessage && <p className="error-message margin-bottom-30">{alertMessage}</p>}
                         </div>
-
                         <div className='user-buttons-container'>
                             <button 
                                 className='btn btn-outline-danger user-crud-buttons'
@@ -104,7 +105,6 @@ const RegisterForm = () => {
                         </div>
                     </div>
                 </form>
-            
             </div>
         </div>
     );
