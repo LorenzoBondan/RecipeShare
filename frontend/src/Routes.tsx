@@ -1,4 +1,3 @@
-
 import Footer from "Components/Footer";
 import Navbar from "Components/Navbar";
 import Admin from "pages/Admin";
@@ -57,7 +56,6 @@ const Routes = () => {
                     </Route>
 
                 </Switch>
-                
             </div>
             <Footer/>
         </Router>

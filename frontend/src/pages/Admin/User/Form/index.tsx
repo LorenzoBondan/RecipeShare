@@ -1,4 +1,3 @@
-
 import { AxiosRequestConfig } from 'axios';
 import { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
@@ -6,6 +5,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import Select from 'react-select';
 import { requestBackend } from 'util/requests';
 import { Role, User } from 'types';
+import { toast } from 'react-toastify';
 
 type UrlParams = {
     userId: string;
@@ -42,7 +42,6 @@ const Form = () => {
 
     const [selectRoles, setSelectRoles] = useState<Role[]>();
 
-    //trazer os roles pra povoar o combobox
     useEffect(() => {
         requestBackend({url: '/roles', params: {page: 0, size: 50, }, withCredentials: true})
             .then(response => {
@@ -65,11 +64,10 @@ const Form = () => {
                 history.push("/admin/users");
             })
             .catch(() => {
-                //toast.error('Erro ao cadastrar o User.');
+                toast.error('Error.');
             })
     };
 
-    // botão de cancelar -> reenvia o usuário para a lista de produtos, saindo do form
     const handleCancel = () => {
         history.push("/admin/users")
     }
@@ -78,7 +76,6 @@ const Form = () => {
         <div className="edit-profile-form-container">
             <div className="base-card post-card-form-card">
                 <h1>Edit Profile</h1>
-
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className='row post-crud-inputs-container'>
                         <div className='post-crud-inputs-left-container'>
@@ -96,9 +93,7 @@ const Form = () => {
                                 />
                                 <div className='invalid-feedback d-block'>{errors.name?.message}</div>
                             </div>
-
                         </div>
-
                         <div className='margin-bottom-30'>
                             <label htmlFor="">Img Url</label>  
                                 <input 
@@ -116,7 +111,6 @@ const Form = () => {
                                 />
                                 <div className='invalid-feedback d-block'>{errors.imgUrl?.message}</div>
                         </div>
-
                         <div className='margin-bottom-30'>
                             <label htmlFor="" style={{color:"white"}}>Roles</label> 
                                 <Controller 
@@ -139,7 +133,6 @@ const Form = () => {
                                     <div className='invalid-feedback d-block'>Campo obrigatório</div>
                                 )}
                         </div>
-
                         <div className='post-crud-buttons-container'>
                             <button 
                                 className='btn btn-outline-danger post-crud-buttons'
@@ -147,12 +140,10 @@ const Form = () => {
                                 >
                                 CANCEL
                             </button>
-
                             <button className='btn btn-primary text-white post-crud-buttons'>SAVE</button>
                         </div>
                     </div>
                 </form>
-            
             </div>
         </div>
     );

@@ -1,5 +1,3 @@
-
-
 import { Link } from 'react-router-dom';
 import { requestBackend } from 'util/requests';
 import { AxiosRequestConfig } from 'axios';

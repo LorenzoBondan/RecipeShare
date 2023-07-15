@@ -1,4 +1,3 @@
-
 import { useParams } from 'react-router-dom';
 import './styles.css';
 import { useCallback, useEffect, useState } from 'react';
@@ -241,7 +240,6 @@ const RecipeDetails = () => {
   
     function closeRecipeModal(){
         setRecipeModalIsOpen(false);
-        
     }
 
     const onSubmitRecipe = (formData : Recipe) => {
@@ -460,7 +458,6 @@ const RecipeDetails = () => {
                             <h6>{creator?.name}</h6>
                         </div>
                         )}
-
                     </div>
                 </div>
                 <div className='recipe-image'>

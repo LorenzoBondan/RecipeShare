@@ -130,7 +130,6 @@ const FavoritedRecipeCard = ({recipeId, onUpdateFavorite} : Props) => {
                 <div className="recipe-card-second-container">
                     {recipe && plotStars(recipe?.pontuationAverage)}
                 </div>
-
             </div>
         </div>
     );
