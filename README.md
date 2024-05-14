@@ -44,8 +44,6 @@ This is a social media used to share, discover and avaliate new recipes.
 - React
 - CSS
 
-Spring Boot v4.15.3 | Node v14.18.2
-
 ## Author
 
 [Lorenzo Bondan](HTTPS://WWW.LINKEDIN.COM/IN/LORENZO-BONDAN-108B42236)
